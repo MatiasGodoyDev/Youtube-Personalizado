@@ -1,0 +1,1191 @@
+/* Reset de márgenes y padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #121212; /* Fondo oscuro */
+    color: #fff;
+    line-height: 1.6;
+    margin: 0; /* Elimina márgenes predeterminados */
+    display: flex;
+    flex-direction: column; /* Organiza elementos en columna */
+    min-height: 100vh; /* Asegura que el body ocupe toda la ventana */
+}
+
+main {
+    flex: 1; /* Permite que el contenido principal crezca y empuje el footer hacia abajo */
+}
+/* Contenido principal (sin la clase main-content) */
+body > *:not(.footer) {
+    flex-grow: 1; /* Hace que el contenido principal ocupe todo el espacio restante */
+}
+
+/* Footer */
+.footer {
+    background-color: #1E1E2F;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 14px;
+    width: 100%;
+}
+
+/* Barra de navegación (Navbar) */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background: linear-gradient(145deg, #2D2D3E, #1E1E2F);
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.5);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    flex-wrap: wrap;
+    position: fixed; /* Asegura que los elementos dentro de navbar se puedan posicionar con respecto a él */
+    width: 100%;
+    
+}
+
+
+
+/* Estilo para el clima, sin contenedor, solo texto */
+.weather-info {
+    position: absolute;
+    top: 15px; /* Ajusta el espacio hacia arriba */
+    left: 15px; /* Ajusta el espacio hacia la izquierda */
+    font-size: 0.9rem; /* Tamaño pequeño */
+    color: #fff; /* Color blanco */
+    font-weight: bold; /* Opcional, para resaltar */
+    display: flex;
+    align-items: center; /* Alineación vertical */
+}
+
+/* Estilo para el ícono del clima */
+.weather-icon {
+    width: 20px; /* Ícono pequeño */
+    height: 20px;
+    margin-right: 5px; /* Espacio entre el ícono y la temperatura */
+}
+
+/* Responsividad */
+@media (max-width: 600px) {
+    .weather-info {
+        font-size: 0.8rem; /* Más pequeño en pantallas pequeñas */
+        top: 10px; /* Ajusta para pantallas más pequeñas */
+        left: 10px;
+    }
+}
+
+.logo-image{
+    width: 45rem;
+    height: 16rem;
+    object-fit: contain;
+    margin-bottom: 5%;
+}
+
+.nav-left a, .nav-right a {
+    color: #fff;
+    font-size: 30px; /* Aumento el tamaño de los iconos */
+    margin: 0 20px; /* Mantengo separación adecuada */
+    transition: color 0.3s ease;
+}
+
+/* Iconos cuando se pasa el mouse */
+.nav-left a:hover, .nav-right a:hover {
+    color: #00D4FF;  /* Color al pasar el ratón */
+}
+
+/* Logo Circular con Aurora Boreal */
+.logo-container {
+    display: flex;
+    justify-content: center;  /* Centrado horizontal */
+    align-items: center;      /* Centrado vertical */
+    flex-grow: 1;             /* Permite que el logo ocupe el espacio disponible */
+    width: 25%;
+    height: 25%;
+}
+
+/* Logo Circular con Aurora Boreal */
+.logo-circle {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #00D4FF, #0055FF);
+    position: relative; /* Para mover el logo */
+    right: -22px; /* Mueve el logo 30px hacia la derecha, ajusta según necesidad */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 30px rgba(0, 213, 255, 0.61);
+    animation: rotateLogo 20s linear infinite;
+}
+
+
+/* Animación del logo (Rotación continua) */
+@keyframes rotateLogo {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Animación de pulso de la línea */
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+/* Estilo general del modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: #000000;
+    padding: 20px;
+    border-radius: 10px;
+    width:45%; /* Ajuste de ancho */
+    text-align: center;
+    box-shadow: 0 5px 25px rgba(0, 47, 255, 0.3);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Estilo para los formularios dentro de los modales */
+.modal-content form {
+    grid-template-columns: repeat(3, 1fr); /* Tres columnas por fila */
+    gap: 30px;
+    margin: 0;
+    
+}
+
+.modal-content input[type="text"],
+.modal-content input[type="password"],
+.modal-content input[type="email"],
+.modal-content input[type="tel"],
+.modal-content input[type="date"],
+.modal-content select {
+    width: 100%; /* Ajuste automático al contenedor */
+    height: 100%; /* Aumenta la altura si es necesario */
+    padding: 8px; /* Espacio interno reducido */
+    margin: 5px 0; /* Ajusta el margen para mayor separación */
+    border: 1px solid #555;
+    border-radius: 5px;
+    background-color: #1E1E2F;
+    color: #fff;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+
+/* Estilo de los campos de entrada cuando están enfocados */
+.modal-content input[type="text"]:focus,
+.modal-content input[type="password"]:focus,
+.modal-content input[type="email"]:focus,
+.modal-content input[type="tel"]:focus,
+.modal-content input[type="date"]:focus,
+.modal-content select:focus {
+    border-color: #00D4FF;
+    outline: none;
+}
+
+/* Botones */
+.modal-content button {
+    grid-column: span 3; /* El botón ocupa toda la fila */
+    padding: 12px;
+    background-color: #00D4FF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+/* Estilo cuando el ratón pasa sobre el botón */
+.modal-content button:hover {
+    background-color: #008CFF;
+}
+
+/* Estilo para los links de recuperación y registro */
+.modal-links {
+    margin-top: 20px;
+}
+
+.modal-links button {
+    background: none;
+    border: none;
+    color: #00D4FF;
+    font-size: 14px;
+    cursor: pointer;
+    text-decoration: underline;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.modal-links button:hover {
+    color: #0098CC;
+}
+
+/* Crear Canal Modal */
+.modal-crear-canal {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-crear-canal .modal-content.CrearCanal {
+    width: 45%;
+    padding: 20px;
+    background-color: #000000;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 5px 25px rgba(0, 47, 255, 0.3);
+    gap: 20px;
+}
+
+.modal-crear-canal form {   
+    grid-template-columns: 1fr 1fr; /* Dos columnas */
+    gap: 15px;
+}
+
+.modal-crear-canal input[type="text"],
+.modal-crear-canal input[type="file"] {
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0;
+    border: 1px solid #555;
+    border-radius: 5px;
+    background-color: #1E1E2F;
+    color: #fff;
+    font-size: 14px;
+}
+
+.modal-crear-canal .now-channel {
+    grid-column: span 2; /* El botón ocupa toda la fila */
+    padding: 12px;
+    background-color: #00D4FF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.modal-crear-canal .now-channel:hover {
+    background-color: #008CFF;
+}
+
+/* Botones de cierre */
+.modal-crear-canal .modal-content.CrearCanal .close-btn,
+.modal-crear-canal .modal-content.CrearCanal .back-btn {
+    position: absolute;
+    top: 10px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #fff;
+}
+
+.modal-crear-canal .modal-content.CrearCanal .close-btn {
+    right: 20px;
+}
+
+.modal-crear-canal .modal-content.CrearCanal .back-btn {
+    left: 20px;
+}
+
+/* Animación de desvanecimiento */
+@keyframes modal-fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.modal-crear-canal.active {
+    display: flex;
+    animation: modal-fade-in 0.3s ease-in-out;
+}
+
+/* Estilo de los campos de entrada (inputs) tipo "text" y "password" */
+.modal-content input[type="text"],
+.modal-content input[type="password"] {
+    width: 100%; /* Ocupa todo el ancho del modal */
+    padding: 8px; /* Reducir el espacio interno para un tamaño más compacto */
+    margin: 5px 0; /* Espaciado entre los campos */
+    border: 1px solid #555; /* Borde para diferenciar */
+    border-radius: 5px; /* Bordes redondeados */
+    background-color: #1E1E2F; /* Fondo oscuro para cajas */
+    color: #fff; /* Texto blanco */
+    font-size: 14px; /* Tamaño de texto más pequeño */
+    transition: border-color 0.3s ease; /* Transición suave en el borde */
+}
+
+/* Estilo cuando los campos de entrada tipo "text" o "password" están enfocados */
+.modal-content input[type="text"]:focus,
+.modal-content input[type="password"]:focus {
+    border-color: #00D4FF; /* Color del borde al enfocarse */
+    outline: none; /* Eliminar borde predeterminado */
+}
+
+
+/* Estilo para el botón de login */
+.login-btn {
+    padding: 10px 15px; /* Reducir el padding para un tamaño más compacto */
+    background-color: #00D4FF;
+    border: none;
+    border-radius: 25px;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    position: relative;
+    top: -5px; /* Ajustado el movimiento hacia arriba */
+    right: -20px; /* Ajustado el movimiento hacia la derecha */
+    font-size: 16px; /* Reducido el tamaño de la fuente */
+}
+
+/* Efecto hover del botón */
+.login-btn:hover {
+    background-color: #0098CC;
+    transform: scale(1.05); /* Suavizar el efecto de escala */
+}
+
+
+/* Estilo para el botón "Crear Canal" */
+.now-channel ,.access-btn ,.cannal-btn,.recovery-btn{
+    padding: 12px 18px;
+    background-color: #00D4FF;
+    border: none;
+    border-radius: 25px;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    width: 100%; /* Para que ocupe todo el ancho */
+    margin-top: 15px; /* Espaciado superior */
+}
+
+/* Efecto hover para el botón "Crear Canal" */
+.now-channel:hover,.access-btn:hover,.cannal-btn:hover,.recovery-btn:hover{
+    background-color: #0098CC;
+    transform: scale(1.05);
+}
+
+#futbolSection {
+    margin: 20px;
+    margin-top: 10%;
+}
+
+/* Título de la sección */
+h2 {
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: 20px;
+    font-size: 2rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Tabla */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: transparent; /* Fondo transparente para que las filas alternadas sean visibles */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4); /* Sombra suave */
+}
+
+/* Cabecera de la tabla */
+th {
+    background-color: #1c1c1c; /* Fondo oscuro para la cabecera */
+    color: #ffffff;
+    padding: 15px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* Celdas */
+td {
+    padding: 15px;
+    text-align: center;
+    font-size: 14px;
+    color: #e0e0e0; /* Texto gris claro */
+    border-bottom: 1px solid #333; /* Borde oscuro */
+    background-color: transparent; /* Fondo transparente para que se vea el fondo alternado de las filas */
+}
+
+/* Estilo de las filas alternadas */
+tbody tr:nth-child(odd) {
+    background-color: #2a2a2a; /* Gris oscuro para filas impares */
+}
+
+tbody tr:nth-child(even) {
+    background-color: #121212; /* Negro puro para filas pares */
+}
+
+th, td {
+    border-radius: 0; /* No hay bordes redondeados */
+}
+
+@media (max-width: 1024px) {
+    .navbar {
+        padding: 10px;
+        justify-content: space-between;
+    }
+
+    .logo-circle {
+        width: 80px;
+        height: 80px;
+    }
+
+    .nav-left a, .nav-right a {
+        font-size: 24px;
+        margin: 0 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        padding: 10px 20px;
+    }
+
+    .logo-circle {
+        width: 70px;
+        height: 70px;
+    }
+
+    .nav-left a, .nav-right a {
+        font-size: 22px;
+        margin: 10px 30px;
+    }
+
+    table {
+        font-size: 12px;
+    }
+
+    th, td {
+        padding: 10px;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    .modal-content input[type="text"],
+    .modal-content input[type="password"] {
+        font-size: 14px; /* Ajuste de tamaño de fuente */
+        padding: 10px; /* Aumento de padding para mejor usabilidad en móviles */
+    }
+    .modal-content {
+        width: 90%; /* Ancho ajustado para pantallas más pequeñas */
+    }
+
+    /* Ajuste de las columnas en el formulario */
+    .modal-content form {
+        grid-template-columns: 1fr 1fr; /* Dos columnas en pantallas más pequeñas */
+    }
+
+    /* Los botones ocupan toda la fila */
+    .modal-content button {
+        grid-column: span 2;
+    }
+
+    .modal-content input[type="text"],
+    .modal-content input[type="password"],
+    .modal-content input[type="email"],
+    .modal-content input[type="tel"],
+    .modal-content input[type="date"],
+    .modal-content select {
+        font-size: 14px; /* Ajuste de tamaño de fuente */
+    }
+
+   
+
+    .login-btn {
+        padding: 8px 12px; /* Reducir el padding en pantallas pequeñas */
+        font-size: 14px; /* Reducir el tamaño de la fuente en pantallas pequeñas */
+        top: -3px; /* Ajustar el movimiento hacia arriba en pantallas pequeñas */
+        right: -15px; /* Ajustar el movimiento hacia la derecha en pantallas pequeñas */
+    }
+
+    .carousel-arrow {
+        width: 35px; /* Reducir tamaño de los botones en pantallas pequeñas */
+        height: 35px;
+        font-size: 25px;
+      }
+    
+      .up, .down {
+        top: 15%;  /* Ajuste de posición */
+        bottom: 15%;
+      }
+}
+
+/* Responsividad para pantallas extra pequeñas (máximo 480px) */
+@media (max-width: 480px) {
+    .navbar {
+        flex-direction: column;
+        padding: 5px 10px;
+    }
+
+    .logo-circle {
+        width: 60px;
+        height: 60px;
+    }
+
+    .nav-left a, .nav-right a {
+        font-size: 18px;
+        margin: 5px 20px;
+    }
+    
+
+    .login-btn {
+        width: 100%;
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    
+
+    .carousel-arrow {
+        width: 30px;
+        height: 30px;
+        font-size: 20px;
+      }
+    
+      .up, .down {
+        top: 20%;  /* Ajustar la distancia para pantallas aún más pequeñas */
+        bottom: 20%;
+      }
+}
+
+/* Para pantallas ultra grandes */
+@media (min-width: 1200px) {
+    .navbar {
+        padding: 20px 40px;
+    }
+
+    .logo-circle {
+        width: 120px;
+        height: 120px;
+    }
+
+    .nav-left a, .nav-right a {
+        font-size: 26px;
+        margin: 0 40px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Los botones de control (izquierda y derecha) */
+.carousel-control,.trend-control  {
+    position: absolute;
+    top: 40%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    border: none;
+    color: rgb(8, 160, 215);
+    cursor: pointer;
+    z-index: 10;
+}
+
+.carousel-control.left ,.trend-control.prev {
+    left: 10px;
+    margin-top: 1px;
+}
+
+.carousel-control.right ,.trend-control.next{
+    right: 10px;
+    margin-top: 1pxt;
+}
+.carousel-control.boton-izquierda {
+    left: 10px;
+    margin-top: 20%;
+}
+
+.carousel-control.boton-derecha {
+    right: 10px;
+    margin-top: 20%;
+}
+
+
+
+.video-thumbnail, .video-trend {
+    width: 100%;
+    height: auto;
+}
+
+/* Estilos para el carrusel de videos */
+.video-carousel ,.trend-carousel {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 6%;
+}
+.titleInicio{
+    margin-top: 2%;
+    position: absolute;
+    margin-left: 39%;
+    color: #0098CC;
+}
+
+
+.carousel-track {
+    display: flex;
+    gap: 16px;
+    transition: transform 0.3s ease;
+    display: flex;
+    width: fit-content;
+    transition: transform 0.5s ease-in-out;
+    margin-top: 5%;
+}
+.carousel-tracks {
+    display: flex;
+    gap: 16px;
+    transition: transform 0.3s ease;
+    display: flex;
+    width: fit-content;
+    transition: transform 0.5s ease-in-out;
+    margin-top: 0%;
+}
+.trend-track {
+    display: flex;
+    gap: 16px;
+    transition: transform 0.3s ease;
+    display: flex;
+    width: fit-content;
+    transition: transform 0.5s ease-in-out;
+    margin-top: 13%;
+}
+
+.video-card,.trend-card {
+    flex-shrink: 0;
+    cursor: pointer;
+    width: 300px; /* Ancho fijo para cada tarjeta de video */
+    margin: 10px;
+    position: relative;
+    margin-right: 10px; /* Espacio entre las tarjetas de video */
+
+}
+
+
+
+
+
+
+/* Estilo para los enlaces de navegación */
+a {
+    margin: 10px;
+    text-decoration: none;
+    color: black;
+    font-size: 16px;
+}
+
+/* Ocultar por defecto las secciones de Reels y Tendencias */
+#reels, #tendencias {
+    display: none;
+}
+
+
+/* Botón de búsqueda */
+.search-btn {
+    font-size: 20px;
+    color: #fff;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.search-btn:hover {
+    transform: scale(1.2);
+    color: #ff4081;
+}
+
+/* Barra de búsqueda */
+#searchBar { /* Cambié el selector a #searchBar */
+    position: absolute;
+    top: -60px; /* Oculto fuera de la vista */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    background: rgb(0, 0, 0);
+    padding: 10px 20px;
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgb(10, 136, 204);
+    opacity: 0;
+    transition: all 0.5s ease; /* Animación suave */
+    z-index: 999;
+    pointer-events: none; /* Inicialmente inactivo */
+}
+
+#searchBar input { /* Cambié el selector a #searchBar */
+    width: 100%;
+    border: none;
+    background: none;
+    color: #fff;
+    font-size: 16px;
+    outline: none;
+    font-family: 'Poppins', sans-serif;
+}
+
+#searchBar input::placeholder { /* Cambié el selector a #searchBar */
+    color: rgb(255, 255, 255);
+}
+
+/* Estado activo de la barra */
+#searchBar.active { /* Cambié el selector a #searchBar */
+    top: 18%; /* Baja para ser visible */
+    opacity: 1;
+    pointer-events: all; /* Activa los eventos */
+    z-index: 99999;
+}
+
+
+/* Sección Hero */
+.hero {
+    background: url('https://via.placeholder.com/1920x1080') no-repeat center center/cover;
+    height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+    position: relative;
+    background-attachment: fixed;
+}
+
+.hero .hero-content {
+    z-index: 1;
+}
+
+.hero h1 {
+    font-size: 64px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.hero p {
+    font-size: 20px;
+    font-weight: 300;
+    margin-top: 10px;
+}
+
+/* Sección de contenido principal */
+.content {
+    padding: 40px;
+}
+
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.video-card,.trend-card {
+    background-color: #333;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.video-card:hover ,.trend-card:hover{
+    transform: scale(1.05);
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.8);
+}
+
+.video-thumbnail ,.video-trend{
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.video-card:hover .video-thumbnail .trend-card:hover, .video-trend {
+    transform: scale(1.1);
+}
+
+
+.video-info {
+    padding: 15px;
+}
+
+.video-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #00D4FF;
+}
+
+.video-description {
+    font-size: 14px;
+    color: #bbb;
+    margin-top: 5px;
+}
+
+.video-creator {
+    font-size: 13px;
+    color: #ddd;
+    margin-top: 5px;
+}
+
+.social-links {
+    margin-top: 10px;
+}
+
+.social-icon {
+    text-decoration: none;
+    color: #fff;
+    margin: 0 20px;
+    font-size: 20px;
+    transition: color 0.3s ease;
+}
+
+.social-icon:hover {
+    color: #00D4FF;
+}
+
+.back-btn {
+    position: absolute; /* Posicionar relativo al contenedor */
+    top: 20px; /* Separación desde el borde superior */
+    left: 20px; /* Separación desde el borde izquierdo */
+    font-size: 20px;
+    color: #007bff;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+}
+
+.input-wrapper {
+    position: relative;
+    width: 100%; /* Asegura que ocupe todo el espacio disponible */
+}
+
+.date-input {
+width: 100%; /* Ocupa toda el área asignada */
+padding: 12px; /* Añade espacio interno */
+border: 1px solid #555; /* Borde oscuro */
+border-radius: 5px; /* Bordes redondeados */
+background-color: #1E1E2F; /* Fondo oscuro */
+color: #fff; /* Texto blanco */
+font-size: 16px; /* Tamaño de texto */
+cursor: pointer; /* Indica que es interactivo */
+transition: border-color 0.3s ease;
+}
+
+.date-input:focus {
+border-color: #00D4FF; /* Cambia el color del borde al enfocarse */
+outline: none; /* Quita el borde predeterminado */
+}
+
+
+.back-btn i {
+    margin-right: 8px;
+}
+
+.back-btn:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 30px;
+    color:  #fff; 
+    cursor: pointer;
+    z-index: 101;
+    transition: color 0.3s ease;
+}
+
+.close-btn:hover {
+    color: #00D4FF;
+}
+
+
+
+
+
+
+
+
+
+
+/* Estilo para los videos dentro del carrusel */
+.video-reel {
+    display: flex;
+    justify-content: center; /* Centra el video horizontalmente */
+    align-items: center; /* Centra el video verticalmente */
+    height: 90vh; /* El video ocupará toda la altura visible de la ventana */
+    width: 100%; /* El video ocupará todo el ancho disponible */
+    margin-top: 0%; /* Mueve el video 50px hacia arriba (ajusta según lo que necesites) */
+    overflow: hidden;
+}
+
+
+/* Contenedor principal del carrusel */
+#reels {
+    position: relative;
+    width: 100%;
+    height: 90vh;  /* El carrusel ocupa toda la altura visible */
+    overflow: hidden; /* Esconde el contenido fuera de la pantalla */
+    z-index: 10;
+}
+
+/* Contenedor de los elementos del carrusel (videos) */
+.reels-container {
+    display: flex;
+    flex-direction: column; /* Los videos se organizan verticalmente */
+    transition: transform 0.5s ease-in-out; /* Transición suave al mover los videos */
+    gap: 0px;
+    margin-top: 7%;
+}
+
+/* Estilo para los videos */
+.video-item {
+    height: 84vh; /* El video ocupará toda la altura visible de la ventana */
+    width: 45%; /* La altura se ajusta proporcionalmente (para que no se vea tan grande) */
+    object-fit: cover; /* Asegura que el video se ajuste sin deformarse */
+}
+/* Para pantallas medianas (Tabletas) */
+@media (max-width: 1024px) {
+    .video-item {
+        width: 90vw; /* El video ocupará el 90% del ancho en pantallas más pequeñas */
+        max-height: 80vh; /* Limita la altura al 80% de la altura de la ventana */
+    }
+}
+
+/* Para pantallas pequeñas (Smartphones) */
+@media (max-width: 600px) {
+    .video-item {
+        width: 95vw; /* El video ocupará el 95% del ancho en pantallas muy pequeñas */
+        max-height: 70vh; /* Limita la altura al 70% de la ventana */
+    }
+}
+
+/* Para pantallas muy grandes */
+@media (min-width: 1600px) {
+    .video-item {
+        width: 60vw; /* El video ocupará el 60% del ancho en pantallas muy grandes */
+        max-height: 80vh; /* Limita la altura al 80% de la ventana */
+    }
+}
+
+/* Estilo de los botones de navegación */
+.carousel-arrow {
+    position: absolute;
+    z-index: 1000;  /* Asegura que los botones estén sobre otros elementos */
+    width: 40px;  /* Tamaño de los botones */
+    height: 40px;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+    color: white;
+    font-size: 30px;
+    cursor: pointer; /* Cambio de cursor al pasar por encima */
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: auto; /* Asegura que el botón sea clickeable */
+    transition: background-color 0.3s ease;  /* Transición suave en hover */
+}
+
+/* Botón "arriba" */
+.up {
+    top: 25%; /* Ajuste con vh para un posicionamiento relativo al alto de la ventana */
+    left: 18%;
+    transform: translateX(-50%);
+    z-index: 1001; /* Aseguramos que esté por encima de otros elementos */
+}
+
+/* Botón "abajo" */
+.down {
+    bottom: 5vh; /* Ajuste con vh para que se quede un poco arriba del borde inferior */
+    left: 18%;
+    transform: translateX(-50%);
+    z-index: 1001; /* Aseguramos que esté por encima de otros elementos */
+}
+
+/* Hover para los botones */
+.carousel-arrow:hover {
+    background-color: #00D4FF; /* Cambio de fondo en hover */
+}
+
+  
+
+.trend-control.prev {
+    left: 10px;
+    margin-top: 9%;
+}
+
+.trend-control.next {
+    right: 10px;
+    margin-top: 9%;
+}
+
+
+.loginBtn{
+    padding: 10px 15px; /* Reducir el padding para un tamaño más compacto */
+    background-color: #00D4FF;
+    border: none;
+    border-radius: 25px;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    position: relative;
+    font-size: 16px; /* Reducido el tamaño de la fuente */
+}
+
+/* Efecto hover del botón */
+.loginBtn:hover {
+    background-color: #0098CC;
+    transform: scale(1.05); /* Suavizar el efecto de escala */
+}
+@media (max-width: 600px) {
+    .loginBtn {
+        font-size: 14px;
+        padding: 8px 12px;
+    }
+}
+
+.login{
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+}
+
+
+
+/* Ícono de foto de perfil */
+.perfil-contenedor {
+    position: absolute; /* Para ubicarlo fuera del flujo normal */
+    top: 10px; /* Ajustar desde la parte superior */
+    right: 10px; /* Ajustar desde la parte derecha */
+    width: 40px; /* Tamaño pequeño */
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.fotoPerfilIcono {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Mantiene la relación de aspecto */
+}
+
+/* Estilo para el modal */
+#modalPerfil {
+    display: none; /* Oculto por defecto */
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro */
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* Estilo para el botón de cerrar */
+#cerrarModalPerfil {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+/* Estilo para los botones dentro del modal */
+.modal-opciones-perfil {
+    margin-top: 20px;
+}
+
+/* Input para cargar la imagen */
+#inputFotoPerfil {
+    display: none; /* Ocultamos el input */
+}
+
+/* Estilos para los botones dentro del modal */
+.modal-opciones-perfil button {
+    background-color: #00D4FF;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+/* Estilo cuando pasas el mouse sobre los botones */
+.modal-opciones-perfil button:hover {
+    background-color: #0098CC;
+}
+
+/* Estilo para la vista previa de la foto */
+#vistaPreviaPerfil {
+    margin-top: 10px;
+    max-width: 100%;
+    max-height: 200px;
+}

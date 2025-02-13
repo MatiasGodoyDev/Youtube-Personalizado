@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>FuturTube</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Iconos de FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Barra de navegación (Navbar) -->
+    <header class="navbar">
+        <!-- Iconos a la izquierda -->
+        <div class="nav-left">
+            <a href="#" id="inicioLink" title="Inicio"><i class="fas fa-home"></i></a>
+            <a href="#" id="reelsLink" title="Reels"><i class="fas fa-video"></i></a>
+            <a href="#" id="tendenciasLink" title="Tendencias"><i class="fas fa-fire"></i></a>
+        </div>
+
+        <!-- Logo Circular con Aurora Boreal -->
+        <div class="logo-container">
+            <div class="logo-circle">
+                <img src="logo.png" alt="Logo" class="logo-image">
+                <div class="aurora-line"></div>
+            </div>
+        </div>
+
+        <!-- Iconos a la derecha -->
+        <div class="nav-right">
+            <a href="#" id="searchIcon" title="Buscar"><i class="fas fa-search"></i></a>
+            <a href="#" id="futbolLink" title="Futbol"><i class="fas fa-futbol"></i></a>
+            <a href="#" id="suscriptoresLink" title="Suscriptores"><i class="fas fa-th-list"></i></a>
+            <button class="login-btn" id="openModal">Iniciar sesión</button>
+        </div>
+
+        <!-- Clima visible directamente (sin contenedor) -->
+        <div id="weatherInfo" class="weather-info">
+            <!-- Se mostrará la ciudad y la temperatura -->
+        </div>
+    </header>
+
+
+    <!-- Modal para inicio de sesión -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <!-- Botón para cerrar el modal -->
+            <span class="close-btn" id="closeModal">X</span>
+
+            <h2>Iniciar sesión</h2>
+
+            <!-- Formulario de Inicio de Sesión -->
+            <form action="login.html" method="get">
+                <input type="text" placeholder="Correo o Usuario"><br>
+                <input type="password" placeholder="Contraseña"><br>
+                <button type="submit" class="access-btn">Acceder</button>
+
+                <!-- Botones debajo del formulario -->
+                <div class="modal-links">
+                    <button type="button" class="recover-account-btn">Olvidaste tu usuario?</button>
+                    <button type="button" class="register-btn">Registrate!!</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- Recuperar tu cuenta -->
+    <div id="Recovery" class="modal" data-previous-modal="loginModal">
+        <div class="modal-content recovery-modal">
+            <!-- Botón de regreso -->
+            <span class="back-btn">
+                < </span>
+                    <span class="close-btn" id="closeRecoveryModal">X</span>
+                    <h2>recuperar tu cuenta</h2>
+                    <form action="#">
+                        <input type="email" placeholder="Email" required>
+                        <button type="submit" class="recovery-btn">Recuperar Cuenta </button>
+                    </form>
+        </div>
+    </div>
+    <!-- Modal para Registrarte -->
+    <div id="registerModal" class="modal" data-previous-modal="loginModal">
+        <div class="modal-content registrarte-modal">
+            <!-- Botón para cerrar el modal -->
+            <!-- Flecha simple hacia la izquierda -->
+            <span class="back-btn">
+                < </span>
+                    <span class="close-btn" id="closeRegisterModal">X</span>
+                    <h2>Regístrate</h2>
+                    <!-- Formulario para registro -->
+                    <form action="#">
+                        <input type="text" placeholder="Nombre">
+                        <input type="text" placeholder="Apellido"><br>
+                        <input type="email" placeholder="Email">
+                        <input type="password" placeholder="Contraseña"><br>
+                        <input type="text" placeholder="Username">
+                        <select>
+                            <option value="" disabled selected>Selecciona tu tipo de user</option>
+                            <option value="viewer">VIEWER</option>
+                            <option value="creador">CREADOR<br>
+                        </select><br>
+                        <!-- Para que funcione bien el date -->
+                        <div class="input-wrapper">
+                            <input type="date" placeholder="Fecha de nacimiento" class="date-input">
+                        </div>
+                        <!-- Menú desplegable para Sexo -->
+                        <select>
+                            <option value="" disabled selected>Selecciona tu sexo</option>
+                            <option value="masculino">Masculino</option>
+                            <option value="femenino">Femenino</option>
+                            <option value="otro">Otro</option>
+                            <option value="prefiero-no-decirlo">Prefiero no decirlo</option>
+                        </select><br>
+
+                        <input type="tel" placeholder="Teléfono">
+                        <select>
+                            <option value="" disabled selected>Selecciona tu rol</option>
+                            <option value="administrador">ADMINISTRADOR</option>
+                            <option value="usuario">USUARIO<br>
+                            <option value="moderador">MODERADOR<br>
+                            <option value="familiar">FAMILIAR<br>
+                        </select><br>
+                        <button type="submit" class="cannal-btn">Crear canal</button>
+
+                    </form>
+        </div>
+    </div>
+    <div id="CrearCanal" class="modal-crear-canal" data-previous-modal="registerModal" style="display: none;">
+        <div class="modal-content CrearCanal">
+            <!-- Botón para cerrar el modal -->
+            <span class="back-btn">
+                < </span>
+                    <span class="close-btn" id="closeCrearCanalModal">X</span>
+                    <h2>Crear canal</h2>
+                    <form action="#">
+                        <input type="text" placeholder="Nombre del canal" required><br>
+                        <input type="text" placeholder="Descripción del canal" required><br>
+
+                        <label for="profile-image">Selecciona tu imagen de perfil:</label><br>
+                        <input type="file" id="profile-image" accept="image/*" required><br>
+
+                        <label for="portada-image">Selecciona tu foto de portada:</label><br>
+                        <input type="file" id="portada-image" accept="image/*" required><br>
+
+                        <input type="text" placeholder="URL deseada del canal" required><br>
+
+                        <button type="button" class="now-channel">Crear Canal</button>
+                    </form>
+        </div>
+    </div>
+
+
+
+
+    <section id="inicio" class="video-carousel">
+        <button class="carousel-control left"><i class="fas fa-chevron-left"></i></button>
+        <button class="carousel-control right"><i class="fas fa-chevron-right"></i></button>
+        <div class="carousel-track">
+            <!-- Aquí van todas las tarjetas de video -->
+            <div class="video-card">
+                <img src="https://via.placeholder.com/300x200" alt="Video Thumbnail" class="video-thumbnail">
+
+                <div class="video-info">
+                    <h3 class="video-title">Video Futurista</h3>
+                    <p class="video-description">Descripción futurista del video</p>
+                    <p class="video-creator">Canal Avanzado</p>
+                </div>
+            </div>
+            <div class="video-card">
+                <img src="https://via.placeholder.com/300x200" alt="Video Thumbnail" class="video-thumbnail">
+                <div class="video-info">
+                    <h3 class="video-title">Video Futurista</h3>
+                    <p class="video-description">Descripción futurista del video</p>
+                    <p class="video-creator">Canal Avanzado</p>
+                </div>
+            </div>
+            <div class="video-card">
+                <img src="https://via.placeholder.com/300x200" alt="Video Thumbnail" class="video-thumbnail">
+                <div class="video-info">
+                    <h3 class="video-title">Video Futurista</h3>
+                    <p class="video-description">Descripción futurista del video</p>
+                    <p class="video-creator">Canal Avanzado</p>
+                </div>
+            </div>
+            <div class="video-card">
+                <img src="https://via.placeholder.com/300x200" alt="Video Thumbnail" class="video-thumbnail">
+                <div class="video-info">
+                    <h3 class="video-title">Video Futurista</h3>
+                    <p class="video-description">Descripción futurista del video</p>
+                    <p class="video-creator">Canal Avanzado</p>
+                </div>
+            </div>
+            <div class="video-card">
+                <img src="https://via.placeholder.com/300x200" alt="Video Thumbnail" class="video-thumbnail">
+                <div class="video-info">
+                    <h3 class="video-title">Video Futurista</h3>
+                    <p class="video-description">Descripción futurista del video</p>
+                    <p class="video-creator">Canal Avanzado</p>
+                </div>
+            </div>
+            <div class="video-card">
+                <img src="https://via.placeholder.com/300x200" alt="Video Thumbnail" class="video-thumbnail">
+                <div class="video-info">
+                    <h3 class="video-title">Video Futurista</h3>
+                    <p class="video-description">Descripción futurista del video</p>
+                    <p class="video-creator">Canal Avanzado</p>
+                </div>
+            </div>
+            <div class="video-card">
+                <img src="https://via.placeholder.com/300x200" alt="Video Thumbnail" class="video-thumbnail">
+                <div class="video-info">
+                    <h3 class="video-title">Video Futurista</h3>
+                    <p class="video-description">Descripción futurista del video</p>
+                    <p class="video-creator">Canal Avanzado</p>
+                </div>
+            </div>
+            <div class="video-card">
+                <img src="https://via.placeholder.com/300x200" alt="Video Thumbnail" class="video-thumbnail">
+                <div class="video-info">
+                    <h3 class="video-title">Video Futurista</h3>
+                    <p class="video-description">Descripción futurista del video</p>
+                    <p class="video-creator">Canal Avanzado</p>
+                </div>
+            </div>
+            
+
+        </div>
+        <div class="carousel-wrapper">
+            <div class="carousel-tracks">
+                <!-- Aquí van todas las tarjetas de video -->
+                <div class="video-card">
+                    <img src="https://via.placeholder.com/300x200" alt="Video Thumbnail" class="video-thumbnail">
+                    <div class="video-info">
+                        <h3 class="video-title">Video Destacado 1</h3>
+                        <p class="video-description">Descripción destacada del video</p>
+                        <p class="video-creator">Canal Destacado</p>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <img src="https://via.placeholder.com/300x200" alt="Video Thumbnail" class="video-thumbnail">
+                    <div class="video-info">
+                        <h3 class="video-title">Video Destacado 1</h3>
+                        <p class="video-description">Descripción destacada del video</p>
+                        <p class="video-creator">Canal Destacado</p>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <img src="https://via.placeholder.com/300x200" alt="Video Thumbnail" class="video-thumbnail">
+                    <div class="video-info">
+                        <h3 class="video-title">Video Destacado 1</h3>
+                        <p class="video-description">Descripción destacada del video</p>
+                        <p class="video-creator">Canal Destacado</p>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <img src="https://via.placeholder.com/300x200" alt="Video Thumbnail" class="video-thumbnail">
+                    <div class="video-info">
+                        <h3 class="video-title">Video Destacado 1</h3>
+                        <p class="video-description">Descripción destacada del video</p>
+                        <p class="video-creator">Canal Destacado</p>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <img src="https://via.placeholder.com/300x200" alt="Video Thumbnail" class="video-thumbnail">
+                    <div class="video-info">
+                        <h3 class="video-title">Video Destacado 1</h3>
+                        <p class="video-description">Descripción destacada del video</p>
+                        <p class="video-creator">Canal Destacado</p>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <img src="https://via.placeholder.com/300x200" alt="Video Thumbnail" class="video-thumbnail">
+                    <div class="video-info">
+                        <h3 class="video-title">Video Destacado 1</h3>
+                        <p class="video-description">Descripción destacada del video</p>
+                        <p class="video-creator">Canal Destacado</p>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <img src="https://via.placeholder.com/300x200" alt="Video Thumbnail" class="video-thumbnail">
+                    <div class="video-info">
+                        <h3 class="video-title">Video Destacado 1</h3>
+                        <p class="video-description">Descripción destacada del video</p>
+                        <p class="video-creator">Canal Destacado</p>
+                    </div>
+                </div>
+
+                <!-- Más tarjetas -->
+            </div>
+            <button class="carousel-control boton-derecha"><i class="fas fa-chevron-right"></i></button>
+            <button class="carousel-control boton-izquierda"><i class="fas fa-chevron-left"></i></button>
+            
+        </div>
+        
+    </section>
+    
+
+    <section id="reels" class="video-Vertical" style="display: none;">
+        <div class="reels-container">
+            <!-- Videos estilo TikTok -->
+            <div class="video-reel">
+                <video class="video-item" controls>
+                    <source src="video1.mp4" type="video/mp4">
+                    Tu navegador no soporta el formato de video.
+                </video>
+            </div>
+            <div class="video-reel">
+                <video class="video-item" controls>
+                    <source src="video1.mp4" type="video/mp4">
+                    Tu navegador no soporta el formato de video.
+                </video>
+            </div>
+            <div class="video-reel">
+                <video class="video-item" controls>
+                    <source src="video1.mp4" type="video/mp4">
+                    Tu navegador no soporta el formato de video.
+                </video>
+            </div>
+            <div class="video-reel">
+                <video class="video-item" controls>
+                    <source src="video1.mp4" type="video/mp4">
+                    Tu navegador no soporta el formato de video.
+                </video>
+            </div>
+            <div class="video-reel">
+                <video class="video-item" controls>
+                    <source src="video1.mp4" type="video/mp4">
+                    Tu navegador no soporta el formato de video.
+                </video>
+            </div>
+
+        </div>
+        </div>
+
+        <button class="carousel-arrow up">↑</button>
+        <button class="carousel-arrow down">↓</button>
+    </section>
+
+    <section id="tendencias" class="trend-carousel" style="display: none;">
+        <button class="trend-control prev"><i class="fas fa-chevron-left"></i></button>
+        <button class="trend-control next"><i class="fas fa-chevron-right"></i></button>
+        <div class="trend-track">
+            <div class="trend-card">
+                <img src="https://via.placeholder.com/300x200" alt="Video Thumbnail" class="video-trend">
+
+                <div class="video-info">
+                    <h3 class="video-title">Trending </h3>
+                    <p class="video-description">Descripción del video</p>
+                    <p class="video-creator">Canal Avanzado</p>
+                </div>
+            </div>
+            <div class="trend-card">
+                <img src="https://via.placeholder.com/300x200" alt="Video Thumbnail" class="video-trend">
+
+                <div class="video-info">
+                    <h3 class="video-title">TRENDING </h3>
+                    <p class="video-description">Descripción del video</p>
+                    <p class="video-creator">Canal Avanzado</p>
+                </div>
+            </div>
+            <div class="trend-card">
+                <img src="https://via.placeholder.com/300x200" alt="Video Thumbnail" class="video-trend">
+
+                <div class="video-info">
+                    <h3 class="video-title">TRENDING </h3>
+                    <p class="video-description">Descripción del video</p>
+                    <p class="video-creator">Canal Avanzado</p>
+                </div>
+            </div>
+            <div class="trend-card">
+                <img src="https://via.placeholder.com/300x200" alt="Video Thumbnail" class="video-trend">
+
+                <div class="video-info">
+                    <h3 class="video-title">TRENDING </h3>
+                    <p class="video-description">Descripción del video</p>
+                    <p class="video-creator">Canal Avanzado</p>
+                </div>
+            </div>
+            <div class="trend-card">
+                <img src="https://via.placeholder.com/300x200" alt="Video Thumbnail" class="video-trend">
+
+                <div class="video-info">
+                    <h3 class="video-title">TRENDING </h3>
+                    <p class="video-description">Descripción del video</p>
+                    <p class="video-creator">Canal Avanzado</p>
+                </div>
+            </div>
+            <div class="trend-card">
+                <img src="https://via.placeholder.com/300x200" alt="Video Thumbnail" class="video-trend">
+
+                <div class="video-info">
+                    <h3 class="video-title">TRENDING </h3>
+                    <p class="video-description">Descripción del video</p>
+                    <p class="video-creator">Canal Avanzado</p>
+                </div>
+            </div>
+            <div class="trend-card">
+                <img src="https://via.placeholder.com/300x200" alt="Video Thumbnail" class="video-trend">
+
+                <div class="video-info">
+                    <h3 class="video-title">TRENDING </h3>
+                    <p class="video-description">Descripción del video</p>
+                    <p class="video-creator">Canal Avanzado</p>
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+
+    <!-- Barra de búsqueda (inicialmente oculta) -->
+    <div id="searchBar" class="search-bar">
+        <input type="text" id="searchInput" placeholder="¿Qué estás buscando?">
+    </div>
+
+    <!-- Sección de resultados (opcional) -->
+    <section id="videosSection">
+        <div id="searchSection" class="video-list">
+            <!-- Aquí aparecerán los videos de búsqueda -->
+        </div>
+    </section>
+
+
+
+    <!-- Sección Suscriptores -->
+    <div id="suscriptoresSection" class="section" style="display: none;">
+        <h2>Debe Iniciar Sesion para ver tus suscriptores</h2>
+        <section id="suscriptoresCarousel" class="video-carousel">
+            <button class="carousel-control left" disabled><i class="fas fa-chevron-left" style="display: none;"></i></button>
+            <button class="carousel-control right"><i class="fas fa-chevron-right" style="display: none;"></i></button>
+            <div class="carousel-track">
+                <button class="loginBtn" id="openModalLogin">Iniciar sesión</button>
+            </div>
+        </section>
+    </div>
+
+    <section id="futbolSection" style="display: none;">
+        <h2>Tabla de Torneo - Liga Española</h2>
+        <div id="content-body">
+            <table id="tablaTorneo" border="1">
+                <thead>
+                    <tr>
+                        <th>Posición</th>
+                        <th>Equipo</th>
+                        <th>Partidos Jugados</th>
+                        <th>Victorias</th>
+                        <th>Empates</th>
+                        <th>Derrotas</th>
+                        <th>Goles</th>
+                        <th>Puntos</th>
+                    </tr>
+                </thead>
+                <tbody id="tablaCuerpo">
+                    <!-- Aquí se insertarán las filas de los equipos -->
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+
+
+   
+
+    <script src="script.js"></script> <!-- El script debe estar al final del body -->
+</body>
+
+</html>
